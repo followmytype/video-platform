@@ -40,6 +40,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="channel_name" class="col-md-4 col-form-label text-md-right">{{ __('Channel Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="channel_name" type="text" class="form-control @error('channel_name') is-invalid @enderror" name="channel_name" value="{{ old('channel_name') }}" required autocomplete="channel_name">
+
+                                @error('channel_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
