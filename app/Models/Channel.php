@@ -12,7 +12,7 @@ class Channel extends Model
     // Model的黑名單，相對於$fillable（白名單）規定可以填入哪些欄位，這個則是限制不能填入哪些欄位
     protected $guarded = [];
 
-    // 在route的時候就能直接用slug來做判斷，例如：Route::get('/posts/{slug}')
+    // 在route的時候就能直接用slug來取資料，例如：Route::get('/posts/{post}')，他就會用post的slug欄位去拿Post
     public function getRouteKeyName()
     {
         return 'slug';

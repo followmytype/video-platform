@@ -16,12 +16,12 @@
 |image|string|頻道圖片的儲存位置|
 #### `Model`更動
 1. 增加`Channel`與`User`彼此的關聯（`belongsTo`, `hasOne`）
-2. `Channel`這邊使用`getRouteKeyName`，這是我第一次用，功能是在`Route`那邊可以改成使用指定的欄位去找到對應的資料紀錄，舉例：`Route::get('/posts/{slug}')`
+2. `Channel`這邊使用`getRouteKeyName`，這是我第一次用，功能是在`Route`那邊可以改成使用指定的欄位去找到對應的`Model`資料紀錄
 #### 註冊頁面更動
 * 增加頻道名稱欄位
 #### `Controller`更動
 1. 新增`Channel`的`Controller`
-2. 修改`RegisterController`的驗證及註冊功能：增加頻道名稱的驗證、註冊功能內在新增玩一個使用者後，一起新增他的頻道
+2. 修改`RegisterController`的驗證及註冊功能：增加頻道名稱的驗證，註冊功能在新增完一個使用者後，同時新增他的頻道
 
 ## Version 0.0.1 / 2021-07-26
 ### `Initial project`
