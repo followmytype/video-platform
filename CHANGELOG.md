@@ -54,6 +54,15 @@ php artisan queue:table
     // http://url/images => /storage/app/images/
     ```
 5. `intervention/image`是這邊用到的壓縮圖片外部套件，沒用到太深，所以先不說明
+### 指令紀錄
+```
+# 安裝livewire並建立配置檔案
+composer require livewire/livewire
+php artisan livewire:publish --config
+# 安裝intervention/image並建立配置檔案
+composer require intervention/image
+php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
+```
 
 ## Version 0.0.2 / 2021-07-26
 ### `Channel Table`建立
