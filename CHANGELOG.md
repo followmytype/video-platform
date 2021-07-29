@@ -1,6 +1,26 @@
 # CHANGE LOG
 主要是我的更新日誌和一些心得
 
+## Version 0.0.4 / 2021-07-28
+### 新增、編輯影片
+### 做法描述
+這次實作了頻道新增影片功能，邏輯內容雖然簡單，但跟頻道的操作還是有差異，之前的流程是從路由檔經過`controller`再到`view`，而那個`view`有引用到`livewire`產生的`class`檔案去另外顯示所屬的`view`視圖。但這次的流程改成跳過`controller`，直接在路由檔這邊去呼叫`livewire`的`class`檔，在他那邊做視圖的渲染。做法上只是更換流程而已，沒有太複雜的關係，目前影片只有新增跟編輯兩個功能。
+
+另外這邊有新增`job queue table`，不過還沒實際用到
+```
+php artisan queue:table
+```
+### Video Table
+|名稱|型態|說明|
+|-|-|-|
+|id|id|id，不需要太多解釋|
+|uid|string|頻道的uid，想利用它作為後端儲存檔案的名字參考|
+|channel_id|unsignedBigInteger|用來關聯channels的id|
+|title|string|影片標題|
+|description|text|影片簡介|
+|path|string|頻道圖片的儲存位置|
+|visibility|string|影片觀看權限，公開、私人、限制觀看|
+
 ## Version 0.0.3 / 2021-07-27
 ### `Channel Update`頻道更新
 ### 做法描述
