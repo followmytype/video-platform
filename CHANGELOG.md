@@ -1,6 +1,16 @@
 # CHANGE LOG
 主要是我的更新日誌和一些心得
 
+## Version 0.0.4.1 2021=07-29
+### 安裝`ffmpeg`
+因為這邊會需要用到影片處理軟體，所以在部屬的環境上需要有ffmpeg這個軟體，然後我們使用ffmpeg-laravel的套件去使用它，環境上的ffmpeg安裝這邊就不說明了，只是我們這邊需要知道安裝後的路徑在哪裡，因為我們的.env檔內需要去讀取他絕對路徑
+### 用到的指令
+```
+composer require pbmedia/laravel-ffmpeg
+// 產生他的配置檔案
+php artisan vendor:publish --provider="ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider"
+```
+
 ## Version 0.0.4 / 2021-07-28
 ### 新增、編輯影片
 ### 做法描述
