@@ -1,7 +1,20 @@
 # CHANGE LOG
 主要是我的更新日誌和一些心得
 
-## Version 0.0.4.1 2021=07-29
+## Version 0.0.4.4 2021-07-29
+### 進行影片上傳功能part1-產生預覽圖片
+影片上傳的邏輯：使用者上傳他的影片時，將原始影片儲存在暫存資料夾中，當上傳完畢後就創建一筆影片的紀錄，這時用`queue`去執行產生影片預覽圖以及產生影片的串流檔案，這裡用到`ffmpeg`以及他的`laravel`套件去執行。
+### 修改項目
+1. `config/livewire.php`裡修改檔案上傳的大小限制，當然修改這邊不會就沒有問題，伺服器的環境上也要更改`php.ini`的檔案上傳限制。
+2. `config/filesystem.php`的`disks`新增我們儲存的目錄，讓`ffmpeg`產生的直接指定目錄儲存，然後`link`他們。
+3. `job/CreateThumbnailFromVideo.php`: 執行產生影片預覽圖
+4. `job/ConvertVideoForStreaming.php`: 執行產生影片串流檔案，但還沒實作
+5. `CreateVideo.php`: 在產生一筆資料紀錄後，呼叫`job`去執行產生預覽跟串流檔
+### 補充
+新增一個`command`去執行`ffmpeg`產生串流檔測試  
+`Commands/VideoEncode.php`
+
+## Version 0.0.4.1 2021-07-29
 ### 安裝`ffmpeg`
 因為這邊會需要用到影片處理軟體，所以在部屬的環境上需要有`ffmpeg`這個軟體，然後我們使用`ffmpeg-laravel`的套件去使用它，環境上的`ffmpeg`安裝這邊就不說明了，只是我們這邊需要知道安裝後的路徑在哪裡，因為我們的`.env`檔內需要去讀取他絕對路徑
 ### 用到的指令

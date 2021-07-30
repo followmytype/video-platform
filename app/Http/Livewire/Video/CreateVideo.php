@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Video;
 
+use App\Jobs\ConvertVideoForStreaming;
+use App\Jobs\CreateThumbnailFromVideo;
 use App\Models\Channel;
 use App\Models\Video;
 use Livewire\Component;
@@ -32,11 +34,14 @@ class CreateVideo extends Component
 
     public function fileCompleted()
     {
+        // 驗證
         $this->validate();
 
+        // 儲存檔案到暫存
         $path = $this->videoFile->store('video-temp');
         $pathArray = explode('/', $path);
 
+        // 新增影片的資料庫紀錄
         $this->video = $this->channel->videos()->create([
             'uid' => uniqid(true),
             'title' => 'untitled',
@@ -45,6 +50,11 @@ class CreateVideo extends Component
             'path' => end($pathArray),
         ]);
 
+        // 觸發job，執行產生預覽圖，產生串流檔案
+        CreateThumbnailFromVideo::dispatch($this->video);
+        // ConvertVideoForStreaming::dispatch($this->video);
+
+        // 返回影片內容編輯頁
         return redirect()->route('video.edit', [
             'channel' => $this->channel,
             'video' => $this->video,

@@ -20,6 +20,7 @@ class CreateVideosTable extends Migration
             $table->string('title')->comment('標題');
             $table->text('description')->nullable()->comment('影片敘述');
             $table->text('path')->nullable()->comment('檔名');
+            $table->string('thumbnail_image')->nullable();
             $table->string('processed_file')->nullable();
             $table->enum('visibility', ['private', 'public', 'unlisted'])->default('private')->comment('觀看權限');
 
