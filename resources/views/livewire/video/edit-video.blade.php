@@ -4,6 +4,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ asset($this->video->thumbnail) }}" class="img-thumbnail">
+                    </div>
+                    <div class="col-md-8">
+                        <p>進度：({{ $this->video->processing_percentage }})</p>
+                    </div>
+                </div>
                 <form wire:submit.prevent="update">
                     <div class="form-group">
                         <label>標題</label>

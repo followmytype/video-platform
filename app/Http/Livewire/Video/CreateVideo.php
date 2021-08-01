@@ -52,7 +52,7 @@ class CreateVideo extends Component
 
         // 觸發job，執行產生預覽圖，產生串流檔案
         CreateThumbnailFromVideo::dispatch($this->video);
-        // ConvertVideoForStreaming::dispatch($this->video);
+        ConvertVideoForStreaming::dispatch($this->video);
 
         // 返回影片內容編輯頁
         return redirect()->route('video.edit', [
