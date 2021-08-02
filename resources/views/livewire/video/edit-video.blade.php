@@ -4,7 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="row">
+                <div class="row"
+                @if($this->video->processing_percentage < 100)
+                    wire:poll
+                @endif>
                     <div class="col-md-4">
                         <img src="{{ asset($this->video->thumbnail) }}" class="img-thumbnail">
                     </div>

@@ -42,7 +42,7 @@ return [
             'visibility' => 'public',
         ],
 
-        'videos-temp' => [
+        'video-temp' => [
             'driver' => 'local',
             'root' => storage_path('app/video-temp'),
             'url' => env('APP_URL').'/storage',

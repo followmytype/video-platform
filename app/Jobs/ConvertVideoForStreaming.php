@@ -10,6 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class ConvertVideoForStreaming implements ShouldQueue
@@ -36,12 +38,13 @@ class ConvertVideoForStreaming implements ShouldQueue
     {
         // 儲存的位置：/{video-uid}/{video-uid}.m3u8
         $destination = "/" . $this->video->uid . "/" . $this->video->uid . ".m3u8";
+        Log::info("即將產生串流檔，位置：$destination");
 
         // 產生低畫質跟高畫質兩個規格
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
 
-        FFMpeg::fromDisk('videos-temp')
+        FFMpeg::fromDisk('video-temp')
             ->open($this->video->path)
             ->exportForHLS()
             ->addFormat($low, function ($filters) {
@@ -57,10 +60,15 @@ class ConvertVideoForStreaming implements ShouldQueue
             })
             ->toDisk('videos')
             ->save($destination);
+        Log::info("串流檔案完成，更新資料庫紀錄...");
 
         $this->video->update([
             'processed' => true,
             'processed_file' => $this->video->uid . '.m3u8',
         ]);
+
+        // 刪除暫存檔案
+        Storage::disk('video-temp')->delete($this->video->path);
+        Log::info("已刪除 {$this->video->path} 影片暫存檔");
     }
 }
