@@ -9,7 +9,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <img src="{{ asset($video->thumbnail) }}" class="img-thumbnail">
+                                    <a href="{{ route('video.watch', $video) }}">
+                                        <img src="{{ asset($video->thumbnail) }}" class="img-thumbnail">
+                                    </a>
                                 </div>
                                 <div class="col-md-3">
                                     <h5>{{ $video->title }}</h5>

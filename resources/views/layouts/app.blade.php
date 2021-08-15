@@ -18,6 +18,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @stack('custom-css')
+
     <!-- material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
@@ -97,6 +99,7 @@
             @yield('content')
         </main>
     </div>
+    @stack('scripts')
     @livewireScripts
 </body>
 </html>
