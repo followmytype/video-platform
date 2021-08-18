@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->unsignedBigInteger('channel_id')->comment('所屬的頻道id');
             $table->string('title')->comment('標題');
             $table->text('description')->nullable()->comment('影片敘述');
+            $table->integer('views')->default(0)->comment('觀看次數');
             $table->text('path')->nullable()->comment('檔名');
             $table->string('thumbnail_image')->nullable();
             $table->string('processed_file')->nullable();
