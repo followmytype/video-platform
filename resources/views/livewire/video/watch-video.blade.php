@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 p-0">
                 <div class="video-container">
                     <video id="the-video" class="video-js vjs-fill vjs-styles=defaults vjs-big-play-centered" controls preload="auto" poster="{{ asset($video->thumbnail) }}" data-setup="{}" wire:ignore>
                         <source src="{{ asset('videos/' . $video->uid . '/' . $video->processed_file) }}" type="application/x-mpegURL" />
@@ -17,8 +17,30 @@
                         </p>
                     </video>
                 </div>
-                <h2>{{ $views }}</h2>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mt-4">{{ $video->title }}</h3>
+                                <p class="gray-text">{{ $video->views}} views . {{ $video->upload_date }}</p>
+                            </div>
+                            <div>
+                                <button>LIKE</button><button>DISLIKE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12"></div>
+                </div>
+            </div>
+            <div class="col-md 4"></div>
         </div>
     </div>
 

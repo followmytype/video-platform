@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,12 @@ class Video extends Model
         } else {
             return 'default.png';
         }
+    }
+
+    public function getUploadDateAttribute()
+    {
+        $d = new Carbon($this->created_at);
+        return $d->toFormattedDateString();
     }
 
     public function channel()
