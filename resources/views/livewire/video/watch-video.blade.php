@@ -30,42 +30,41 @@
                                 <p class="gray-text">{{ $video->views}} views . {{ $video->upload_date }}</p>
                             </div>
                             <div>
-                                <button>LIKE</button><button>DISLIKE</button>
+                                <livewire:video.voting :video="$video" />
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12"></div>
+                    <div class="row">
+                        <div class="col-md-12"></div>
+                    </div>
                 </div>
+                <div class="col-md 4"></div>
             </div>
-            <div class="col-md 4"></div>
         </div>
+
+        @push('scripts')
+        <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+        <script>
+            var player = videojs('the-video');
+            player.ready(function() {
+                // console.log('影片準備好');
+                player.play();
+            });
+
+            player.on('timeupdate', function() {
+                // 當播放時間變更時
+                // console.log(this.currentTime()); // 時間
+                if (this.currentTime() > 3) {
+                    this.off('timeupdate'); // 停止監聽播放時間
+
+                    Livewire.emit('VideoViewed'); // 觸發在後端建立的事件
+                }
+            });
+
+            player.on('ended', function() {
+                console.log('影片結束');
+            });
+        </script>
+        @endpush
     </div>
-
-    @push('scripts')
-    <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
-    <script>
-        var player = videojs('the-video');
-        player.ready(function() {
-            // console.log('影片準備好');
-            player.play();
-        });
-
-        player.on('timeupdate', function() {
-            // 當播放時間變更時
-            // console.log(this.currentTime()); // 時間
-            if (this.currentTime() > 3) {
-                this.off('timeupdate'); // 停止監聽播放時間
-
-                Livewire.emit('VideoViewed'); // 觸發在後端建立的事件
-            }
-        });
-
-        player.on('ended', function() {
-            console.log('影片結束');
-        });
-    </script>
-    @endpush
-</div>
