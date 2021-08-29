@@ -7,8 +7,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 p-0">
-                <div class="video-container">
-                    <video id="the-video" class="video-js vjs-fill vjs-styles=defaults vjs-big-play-centered" controls preload="auto" poster="{{ asset($video->thumbnail) }}" data-setup="{}" wire:ignore>
+                <div class="video-container" wire:ignore>
+                    <video id="the-video" class="video-js vjs-fill vjs-styles=defaults vjs-big-play-centered" controls preload="auto" poster="{{ asset($video->thumbnail) }}" data-setup="{}">
                         <source src="{{ asset('videos/' . $video->uid . '/' . $video->processed_file) }}" type="application/x-mpegURL" />
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a
@@ -68,3 +68,4 @@
         </script>
         @endpush
     </div>
+</div>
