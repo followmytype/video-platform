@@ -10,7 +10,7 @@ class WatchVideo extends Component
     // 事件監聽器，可以命名一個事件並且給他對應的行為，讓前端去觸發他
     protected $listeners = ['VideoViewed' => 'addViewCount'];
 
-    public $video;
+    public Video $video;
 
     public function mount(Video $video)
     {

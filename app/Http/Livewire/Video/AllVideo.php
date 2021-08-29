@@ -16,7 +16,7 @@ class AllVideo extends Component
     use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
-    public $channel;
+    public Channel $channel;
 
     public function mount(Channel $channel)
     {
