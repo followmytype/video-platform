@@ -1,6 +1,19 @@
 # CHANGE LOG
 主要是我的更新日誌和一些心得
 
+## version 0.0.8 2021-08-28
+### 製作點讚功能
+喜歡與不喜歡後面邏輯比較簡單，建立兩張資料表，一張紀錄喜歡影片的`user_id`和`video_id`，另一張紀錄不喜歡影片的`user_id`和`video_id`，並且建立他們的`Model`，與`Video`彼此加上關聯
+1. `create_likes_table.php`
+2. `create_dislikes_table.php`
+3. `Like.php`
+4. `Dislike.php`
+    > 因為這兩張資料表用來做單純紀錄的功能，所以不需要使用時戳，而`Model`那邊也記得要將時戳功能關掉。  
+    `public $timestamps = false;`
+5. `Video.php`新增關聯外也新增判斷當前使用者是否點過讚或是倒過讚的功能
+6. 新增點讚功能的`livewire`（`Voting.php`），並實作點讚倒讚的方法
+7. 調整`blade`檔案
+
 ## Version 0.0.7 2021-08-18
 使用`video.js`的套件做影片播放器
 1. 新增影片播放頁面，稍微佈置一下頁面排版，使用[這個套件](https://videojs.com/)

@@ -36,4 +36,24 @@ class Video extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function dislikes()
+    {
+        return $this->hasMany(Dislike::class);
+    }
+
+    public function doesUserLikedVideo()
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
+
+    public function doesUserDislikedVideo()
+    {
+        return $this->dislikes()->where('user_id', auth()->id())->exists();
+    }
 }
