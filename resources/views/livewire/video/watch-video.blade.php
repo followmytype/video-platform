@@ -34,13 +34,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12"></div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <livewire:channel.channel-info :channel="$video->channel" />
                     </div>
                 </div>
-                <div class="col-md 4"></div>
+                <hr>
             </div>
+            <div class="col-md-4"></div>
         </div>
 
         @push('scripts')
@@ -49,7 +52,7 @@
             var player = videojs('the-video');
             player.ready(function() {
                 // console.log('影片準備好');
-                player.play();
+                // player.play();
             });
 
             player.on('timeupdate', function() {

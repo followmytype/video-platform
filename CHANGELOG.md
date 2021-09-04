@@ -1,6 +1,11 @@
 # CHANGE LOG
 主要是我的更新日誌和一些心得
 
+## version 0.0.9 2021-09-04
+### 製作訂閱功能
+會員可以訂閱頻道，新增訂閱資料表，紀錄使用者`id`和頻道`id`，`User`和`Channel model`新增關聯和判斷，使用者訂閱了哪些頻道，使用者有沒有訂閱這個頻道，頻道的訂閱數等等。新增`livewire`做訂閱的功能，作法跟點讚差不多
+1. `create_subscriptions_table`
+2. `Subscription.php`
 ## version 0.0.8 2021-08-28
 ### 製作點讚功能
 喜歡與不喜歡後面邏輯比較簡單，建立兩張資料表，一張紀錄喜歡影片的`user_id`和`video_id`，另一張紀錄不喜歡影片的`user_id`和`video_id`，並且建立他們的`Model`，與`Video`彼此加上關聯
