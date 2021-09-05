@@ -56,4 +56,17 @@ class Video extends Model
     {
         return $this->dislikes()->where('user_id', auth()->id())->exists();
     }
+
+    /**
+     * 在影片頁面的留言只會拿取對影片的留言，而不會拿取回覆的留言
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('reply_id');
+    }
+
+    public function allCommentCount()
+    {
+        return $this->hasMany(Comment::class)->count();
+    }
 }

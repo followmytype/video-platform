@@ -42,6 +42,12 @@
                     </div>
                 </div>
                 <hr>
+
+                <h4>{{ $video->allCommentCount() }} 評論</h4>
+                @auth
+                <livewire:comment.new-comment :video="$video" :replyOn=0 :key="$video->id" />
+                @endauth
+                <livewire:comment.all-comments :video="$video" />
             </div>
             <div class="col-md-4"></div>
         </div>
