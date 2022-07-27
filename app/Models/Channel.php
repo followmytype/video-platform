@@ -37,4 +37,13 @@ class Channel extends Model
     {
         return $this->subscriptions()->count();
     }
+
+    public function getPictureAttribute()
+    {
+        if ($this->image) {
+            return '/images/' . $this->image;
+        } else {
+            return '/images/' . 'channel-default.png';
+        }
+    }
 }

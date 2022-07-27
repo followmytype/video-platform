@@ -44,7 +44,7 @@ class ConvertVideoForStreaming implements ShouldQueue
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
 
-        FFMpeg::fromDisk('video-temp')
+        $media = FFMpeg::fromDisk('video-temp')
             ->open($this->video->path)
             ->exportForHLS()
             ->addFormat($low, function ($filters) {
@@ -61,10 +61,12 @@ class ConvertVideoForStreaming implements ShouldQueue
             ->toDisk('videos')
             ->save($destination);
         Log::info("串流檔案完成，更新資料庫紀錄...");
+        $duration = gmdate('H:i:s', $media->getDurationInSeconds());
 
         $this->video->update([
             'processed' => true,
             'processed_file' => $this->video->uid . '.m3u8',
+            'duration' => $duration,
         ]);
 
         // 刪除暫存檔案
